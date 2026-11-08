@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
 
 from auth.dependencies import get_user
 from auth.exceptions import UserException
@@ -20,9 +21,13 @@ def register(user: UserRegister, db = Depends(get_db)) -> UserRead:
         )
 
 @router.post("/login")
-def login(user: UserLogin, db = Depends(get_db)) -> Token:
+def login(form_data: OAuth2PasswordRequestForm = Depends(), db = Depends(get_db)) -> Token:
     try:
-        return AuthService(db).login(user)
+        user_data = UserLogin(
+            username=form_data.username,
+            password=form_data.password
+        )
+        return AuthService(db).login(user_data)
     except UserException as e:
         raise HTTPException(
             status_code=e.status_code,
