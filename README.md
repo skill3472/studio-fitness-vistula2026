@@ -15,3 +15,4 @@ TBA
 |71642|Tester manualny|Analityk|
 |71553|Koordynator zespołu|Product Owner|
 |72687|Programista Frontendu|-|
+|73756|Analityk|-|
