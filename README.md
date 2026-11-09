@@ -2,7 +2,7 @@
 Projekt zespołowy na Uczelnię Vistula w Warszawie, rok akademicki 2026/2027.
 
 ## Ogólne założenia
-TBA
+Celem projektu jest zbudowanie systemu do obsługi studia fitness i treningów personalnych. Rozwiązanie ma umożliwić prowadzenie bazy klientów wraz z ich karnetami oraz udostępnić grafik zajęć: przeglądanie oferty, sprawdzanie wolnych miejsc oraz zapisywanie się i anulowanie rezerwacji z zachowaniem limitu uczestników. Pierwsza wersja obejmuje dwa obszary: klienci i karnety (EPIC-01) oraz grafik i rezerwacje (EPIC-02).
 
 ## Skład zespołu projektowego
 |Nr. indeksu|Rola|Rola backup|
