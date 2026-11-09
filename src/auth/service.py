@@ -2,14 +2,14 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from auth.exceptions import InvalidCredentials, UserAlreadyExists, UserNotFoundError
-from auth.models import Token, UserLogin, UserRead, UserRegister
+from auth.models import Token, UserLogin, UserRegister
 from auth.models import User as UserSchema
 from auth.schema import User
 from auth.utils import (
     create_access_token,
     hash_password,
     verify_password,
-    resolve_user_id_from_token
+    resolve_user_id_from_token,
 )
 
 
@@ -28,7 +28,7 @@ class AuthService:
 
         Returns:
             UserSchema: Schema of created user
-        
+
         Raises:
             UserAlreadyExists: When user with provided username already exists.
         """
@@ -56,28 +56,22 @@ class AuthService:
             select(User).where(User.username == schema.username)
         ).scalar_one_or_none()
         if user is None or not verify_password(schema.password, user.password_hash):
-            raise InvalidCredentials(
-                "Incorrect name or password."
-            )
+            raise InvalidCredentials("Incorrect name or password.")
 
         return Token(access_token=create_access_token(user.id))
 
     def get_current_user(self, token: str) -> UserSchema:
         user_id: int = resolve_user_id_from_token(token)
 
-        user: User = self.db.get(User, user_id)
+        user: User | None = self.db.get(User, user_id)
         if user is None:
-            raise InvalidCredentials(
-                "Could not validate credentials."
-            )
+            raise InvalidCredentials("Could not validate credentials.")
 
         return UserSchema.model_validate(user)
 
     def get_user_by_id(self, id: int) -> UserSchema:
-        user: User = self.db.get(User, id)
+        user: User | None = self.db.get(User, id)
         if user is None:
-            raise UserNotFoundError(
-                "User with provided ID was not found."
-            )
+            raise UserNotFoundError("User with provided ID was not found.")
 
         return UserSchema.model_validate(user)

@@ -8,5 +8,8 @@ from common.db.dependencies import get_db
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 
-def get_user(token: str = Security(oauth2_scheme), db: Session = Depends(get_db)) -> User:
+
+def get_user(
+    token: str = Security(oauth2_scheme), db: Session = Depends(get_db)
+) -> User:
     return AuthService(db).get_current_user(token)

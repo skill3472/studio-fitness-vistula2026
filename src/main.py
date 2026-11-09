@@ -20,21 +20,22 @@ front_router = APIRouter(prefix="", tags=["Frontend"])
 api_router.include_router(common_router, prefix="", tags=["Common"])
 api_router.include_router(auth_router, prefix="/auth", tags=["Auth"])
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_schema()
     yield
+
 
 app = FastAPI(title="Vistula Fitness 2026", lifespan=lifespan)
 
 app.include_router(api_router)
 app.include_router(front_router)
 
+
 @front_router.get("/")
 def get_front() -> FileResponse:
-    return FileResponse(
-        path=(settings.FRONT_DIRECTORY / "index.html") 
-    )
+    return FileResponse(path=(settings.FRONT_DIRECTORY / "index.html"))
 
 
 if __name__ == "__main__":
