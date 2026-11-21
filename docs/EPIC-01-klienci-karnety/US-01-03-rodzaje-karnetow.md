@@ -27,4 +27,3 @@ Jako klient chcę zobaczyć dostępne rodzaje karnetów, aby wiedzieć, czym si�
 
 Z1, [US-01-04](US-01-04-przypisywanie-karnetu.md).
 
-**Uwaga:** Lista rodzajów karnetów jest wprowadzona na początku projektu. Nie robimy panelu do tworzenia i edycji oferty.
