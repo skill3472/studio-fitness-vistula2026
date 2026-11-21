@@ -1,7 +1,7 @@
 # US-01-06 Sprawdzanie karnetu przy zapisie
 
 - **Epika:** [EPIC-01](README.md)
-- **Aktor:** System EPIC-02
+- **Aktor:** Klient
 - **Priorytet:** Must
 
 ## Historyjka
