@@ -1,7 +1,7 @@
 # US-01-07 Zużycie i zwrot wejść
 
 - **Epika:** [EPIC-01](README.md)
-- **Aktor:** System EPIC-02
+- **Aktor:** Klient, Admin
 - **Priorytet:** Must
 
 ## Historyjka
